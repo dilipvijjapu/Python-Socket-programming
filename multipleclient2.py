@@ -1,0 +1,15 @@
+import socket
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect((socket.gethostname(),6987))
+ms=s.recv(1024)
+print(type(ms))
+print("server: ",ms.decode())
+while True:
+     msg=input(str(" "))
+     msg=msg.encode()
+     s.send(msg)
+     msg3=s.recv(1024)
+     print("server:",msg3.decode())
+     msg4=s.recv(1024)
+     print("client<<",msg4.decode())
+s.close()
